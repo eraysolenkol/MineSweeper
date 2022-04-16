@@ -75,55 +75,17 @@ public class MineSweeper {
     public String countMinesAround(int row,int column) {
         int count = 0;
 
-        if (row < rows-1) {
-
-            if (mines[row + 1][column].equals("*")) {
-                count++;
-            }
-
-            if (column > 0) {
-                if (mines[row + 1][column - 1].equals("*")) {
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                if ((row + i < 0) || (column + j < 0)) {
+                    continue;
+                } if ((row + i > rows-1) || (column + j > columns-1)) {
+                    continue;
+                } if (i == 0 && j == 0) {
+                    continue;
+                } if (mines[row+i][column+j].equals("*")) {
                     count++;
                 }
-            }
-
-            if (column < columns - 1) {
-                if (mines[row + 1][column + 1].equals("*")) {
-                    count++;
-                }
-            }
-
-        }
-
-        if (row > 0) {
-
-            if (mines[row-1][column].equals("*")) {
-                count++;
-            }
-
-            if (column < columns-1) {
-                if (mines[row-1][column+1].equals("*")) {
-                    count++;
-                }
-            }
-
-            if (column > 0) {
-                if (mines[row-1][column-1].equals("*")) {
-                    count++;
-                }
-            }
-
-        }
-
-        if (column < columns-1) {
-            if (mines[row][column+1].equals("*")) {
-                count++;
-            }
-        }
-
-        if (column > 0) {
-            if (mines[row][column-1].equals("*")) {
-                count++;
             }
         }
 
